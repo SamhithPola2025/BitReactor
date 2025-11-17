@@ -4,12 +4,20 @@
 #include <iostream>
 #include "device_io.hpp"
 
+void writeDevice(CPUArchitecture &cpu, uint8_t slot, uint16_t block, const uint8_t* data, size_t size);
+void readDevice(CPUArchitecture &cpu, uint8_t slot, uint16_t block, uint8_t* buffer, size_t size);
+
 uint16_t program[] = {
-    0x010A,
-    0x0205,
-    0x040A,
-    0x030A,
-    0x0502,
+    0x010A, // ADD 10 to register 0
+    0x0205, // SUBTRACT 5 from register 0
+    0x0301, // LOAD value from memory[1] into register 0
+    0x0402, // STORE value from register 0 into memory[2]
+    0x0502, // MULTIPLY memory[0] by 2
+    0x0602, // DIVIDE register 0 by 2
+    0x0700, // PUSH register 0 onto the stack
+    0x0800, // POP value from the stack into register 0
+    0x0900, // READ from SSD device in slot 0
+    0x0A00  // WRITE to SSD device in slot 0
 };
 
 int CPUInit(
@@ -52,6 +60,8 @@ int CPUInit(
     memset(cpu.memory, 0, 64 * 1024 * sizeof(uint16_t));
 
     cpu.sp = sp;
+    cpu.bp = bp;
+    cpu.acc = acc;
 
     return 0;
 }
@@ -113,6 +123,24 @@ void FetchDecodeExecute(CPUArchitecture &cpu) {
             cpu.registers[0] = cpu.memory[++cpu.sp];
             std::cout << "POP OPERATION" << std::endl;
             break;
+        case 0x09: {
+            uint8_t slot = operand;
+            uint16_t block = cpu.registers[1];
+            uint8_t* buffer = reinterpret_cast<uint8_t*>(&cpu.memory[cpu.registers[2]]);
+            size_t size = cpu.registers[3];
+            readDevice(cpu, slot, block, buffer, size);
+            std::cout << "READ FROM SSD DEVICE" << std::endl;
+            break;
+        } 
+        case 0x0A: { // write to SSD
+            uint8_t slot = operand; 
+            uint16_t block = cpu.registers[1]; 
+            uint8_t* data = reinterpret_cast<uint8_t*>(&cpu.memory[cpu.registers[2]]); 
+            size_t size = cpu.registers[3];
+            writeDevice(cpu, slot, block, data, size);
+            std::cout << "WRITE TO SSD DEVICE" << std::endl;
+            break;
+        }
         default:
             std::cerr << "UNKNOWN OPCODE: " << (int)opcode << std::endl;
             break;

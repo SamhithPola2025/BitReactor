@@ -12,7 +12,7 @@ public:
     virtual ~Device() = default;
 
     virtual void writeBlock(uint16_t block, const uint8_t* data, size_t size) = 0;
-    virtual void readBlock(uint16_t block, uint8_t* buffer, size_t size) = 0;
+    virtual void readBlock(uint16_t block, uint8_t* buffer, size_t size) = 0;    
 };
 
 // example SSD Device
@@ -36,4 +36,5 @@ public:
         if (block >= numBlocks || size > blockSize) return;
         std::memcpy(buffer, &storage[block * blockSize], size);
     }
+    
 };
