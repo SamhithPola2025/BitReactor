@@ -2,7 +2,8 @@
 BitReactor is an 8-bit CPU architecture simulator designed for experimenting with low-level programming concepts and testing custom instructions. It provides a virtual environment to simulate CPU operations, memory management, and device I/O.
 
 ## Coding stats (in hours)!
-https://hackatime-badge.hackclub.com/U08AP4Z9S9F/BitReactor
+![coding stats](https://hackatime-badge.hackclub.com/U08AP4Z9S9F/BitReactor)
+
 
 ## Key Features
 - **REPL Mode**: Interactively execute instructions in real-time.
