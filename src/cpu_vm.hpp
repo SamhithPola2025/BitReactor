@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cpu_arch.hpp"
+#include <cstdint>
 
 int CPUInit(
     CPUArchitecture &cpu,

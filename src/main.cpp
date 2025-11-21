@@ -72,9 +72,26 @@ std::vector<uint16_t> loadProgramFromFile(const std::string& filename) {
         return instructions;
     }
 
-    uint16_t instruction;
-    while (file >> std::hex >> instruction) { // Read instructions in hexadecimal format
-        instructions.push_back(instruction);
+    std::string line;
+    while (std::getline(file, line)) {
+        // Ignore comments and blank lines
+        size_t comment_pos = line.find("//");
+        if (comment_pos != std::string::npos) {
+            line = line.substr(0, comment_pos); // Remove the comment
+        }
+
+        // Trim whitespace
+        line.erase(0, line.find_first_not_of(" \t")); // Left trim
+        line.erase(line.find_last_not_of(" \t") + 1); // Right trim
+
+        if (!line.empty()) {
+            try {
+                uint16_t instruction = std::stoi(line, nullptr, 16); // Parse hex
+                instructions.push_back(instruction);
+            } catch (...) {
+                std::cerr << "Invalid instruction in file: " << line << std::endl;
+            }
+        }
     }
 
     file.close();

@@ -1,0 +1,12 @@
+0x010A  // ADD 10 to register 0
+0x0205  // SUBTRACT 5 from register 0
+0x0301  // LOAD value from memory[1] into register 0
+0x0402  // STORE value from register 0 into memory[2]
+0x0502  // MULTIPLY memory[0] by 2
+0x0602  // DIVIDE register 0 by 2
+0x0700  // PUSH register 0 onto the stack
+0x0800  // POP value from the stack into register 0
+0x0900  // READ from SSD device in slot 0
+0x0A00  // WRITE to SSD device in slot 0
+0x0B01  // AND register 0 with 1
+0x0C02  // OR register 0 with 2
