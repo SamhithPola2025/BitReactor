@@ -2,6 +2,9 @@
 
 #include <cstdint>
 #include <vector>
+#include "cpu_arch.hpp"
+
+struct CPUArchitecture;
 
 class Device {
 public:
@@ -38,3 +41,6 @@ public:
     }
     
 };
+
+void writeDevice(CPUArchitecture &cpu, uint8_t slot, uint16_t block, const uint8_t* data, size_t size);
+void readDevice(CPUArchitecture &cpu, uint8_t slot, uint16_t block, uint8_t* buffer, size_t size);
