@@ -80,6 +80,9 @@ BitReactor is an 8-bit CPU architecture simulator designed for experimenting wit
 
 Alternatively, you can double-click the `bitreactor.exe` file in File Explorer to run the program.
 
+## Picture of it working: 
+<img width="549" height="305" alt="image" src="https://github.com/user-attachments/assets/90dc483d-cabc-4d7e-a436-fd1975d5d2af" />
+
 ## Usage
 When you run the program, you will be prompted to choose one of the following options:
 
