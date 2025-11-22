@@ -33,7 +33,52 @@ BitReactor is an 8-bit CPU architecture simulator designed for experimenting wit
    ```bash
    ./bitreactor
    ```
-## You can also just go to releases and run the release in there using ./bitreactor after downloading it!
+## You can also just go to releases and run the release in there using ./bitreactor after downloading it, THIS IS ONLY FOR MAC HOWEVER!
+
+## If you are on any other OS:
+
+### Linux
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/BitReactor.git
+   cd BitReactor
+   ```
+
+2. Use the provided shell script to compile and run the program:
+   ```bash
+   cd src
+   ./build_and_run.sh
+   ```
+
+   Alternatively, you can manually compile and run the program:
+   ```bash
+   cd src
+   g++ -o bitreactor src/main.cpp src/cpu_vm.cpp src/device_io.cpp src/opcodes.cpp
+   ./bitreactor
+   ```
+
+### Windows
+1. Clone the repository or download the release archive for Windows from the [Releases](https://github.com/yourusername/BitReactor/releases) page.
+2. Extract the archive using a tool like WinRAR, 7-Zip, or the built-in Windows extractor.
+3. Use the provided PowerShell script to compile and run the program:
+   ```powershell
+   cd src
+   ./build_and_run.ps1
+   ```
+
+   Alternatively, you can manually compile and run the program:
+   - Open a Command Prompt or PowerShell in the extracted folder.
+   - Compile the program:
+     ```powershell
+     cd src
+     g++ -o bitreactor.exe src/main.cpp src/cpu_vm.cpp src/device_io.cpp src/opcodes.cpp
+     ```
+   - Run the program:
+     ```powershell
+     .\bitreactor.exe
+     ```
+
+Alternatively, you can double-click the `bitreactor.exe` file in File Explorer to run the program.
 
 ## Usage
 When you run the program, you will be prompted to choose one of the following options:
